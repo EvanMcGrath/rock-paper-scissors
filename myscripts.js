@@ -13,3 +13,17 @@ function computerPlay() {
     }
 
 }
+
+function gameRound (playerSelection, computerSelection) {
+
+    // else (playerSelection === computerSelection) {
+    //     return `${playerSelection} vs ${computerSelection}, tie.`
+    // }
+
+    let a = playerSelection === "rock" || computerSelection === "rock"
+    let b = playerSelection === "paper" || computerSelection === "paper" 
+    let c = playerSelection === "scissors" || computerPlay === "scissors" 
+
+    console.log(a,b,c)
+
+}
