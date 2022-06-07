@@ -1,4 +1,6 @@
 
+let result 
+
 
 function computerPlay() {
 
@@ -25,7 +27,7 @@ function gameRound (playerSelection, computerSelection) {
     //let playerSelection = document.getElementById("playerPick").textContent
 
     let caseSelection = playerSelection.toLowerCase() 
-    let result 
+    
 
     if (caseSelection === "rock") {
         if (computerSelection === "paper") {
@@ -64,4 +66,33 @@ function gameRound (playerSelection, computerSelection) {
     } else {
         result = "You can't bloody do that mate!"
     }  
+    
 }   
+
+function game(playerInput) {
+    
+        for (i=0; i<5; i++) {
+            gameRound(playerInput,computerPlay());
+
+            if (result === "You win! Rock smashes scissors!"
+            || result === "You win! Paper covers rock."
+            || result === "You win! Scissors cut paper." ) {
+                playerScore += 1
+            } else if (result === "You lose, paper covers rock."
+            || result === "You lose, scissors cut paper."
+            || result === "You lose, rock smashes scissors!") {
+                computerScorer += 1 
+            } else {
+                return "Try again!"
+            }
+        } 
+
+        if (playerScore > computerScore) {
+            return "You win!" 
+        } else if (playerScore < computerScore) {
+            return "You lose."
+        } else {
+            return "It's a tie."
+        }
+
+    }
