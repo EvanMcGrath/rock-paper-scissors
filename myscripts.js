@@ -1,7 +1,4 @@
 
-let result 
-
-
 function computerPlay() {
 
     computerPick = Math.floor(Math.random()*3)
@@ -18,61 +15,60 @@ function computerPlay() {
 
 function gameRound (playerSelection, computerSelection) {
 
-    // else (playerSelection === computerSelection) {
-    //     return `${playerSelection} vs ${computerSelection}, tie.`
-    // }
-
-
-    // What I think I'll need to use to get the user input from the UI  
-    //let playerSelection = document.getElementById("playerPick").textContent
-
     let caseSelection = playerSelection.toLowerCase() 
     
 
     if (caseSelection === "rock") {
         if (computerSelection === "paper") {
-            result = "You lose, paper covers rock."
+            return "You lose, paper covers rock."
         } else if (computerSelection === "scissors") {
-            result = "You win! Rock smashes scissors!"
+            return "You win! Rock smashes scissors!"
         } else if (computerSelection === "rock") {
-            result = "Two rocks make a tie."
+            return "Two rocks make a tie."
         } else {
-            result = "You can't bloody do that mate!"
+            return "You can't bloody do that mate!"
         }
     }
 
     if (caseSelection === "paper") {
         if (computerSelection === "rock") {
-            result = "You win! Paper covers rock."
+            return "You win! Paper covers rock."
         } else if (computerSelection === "scissors") {
-            result = "You lose, scissors cut paper."
+            return "You lose, scissors cut paper."
         } else if (computerSelection === "paper") {
-            result = "Two papers makes a tie."
+            return "Two papers makes a tie."
         } else {
-            result = "You can't bloody do that mate!"
+            return "You can't bloody do that mate!"
         }
     }
 
     if (caseSelection === "scissors") {
         if (computerSelection === "paper") {
-            result = "You win! Scissors cut paper."
+            return "You win! Scissors cut paper."
         } else if (computerSelection === "rock") {
-            result = "You lose, rock smashes scissors!"
+            return "You lose, rock smashes scissors!"
         } else if (computerSelection === "scissors") {
-            result = "Two scissors makes a tie."
+            return "Two scissors makes a tie."
         } else {
-            result = "You can't bloody do that mate!"
+            return "You can't bloody do that mate!"
         }
     } else {
-        result = "You can't bloody do that mate!"
+        return "You can't bloody do that mate!"
     }  
-    
 }   
 
-function game(playerInput) {
-    
+
+
+function game() {
+
+    let playerScore = 0
+    let computerScore = 0
+
         for (i=0; i<5; i++) {
-            gameRound(playerInput,computerPlay());
+            
+
+            let playerInput = prompt("Enter your pick")
+            let result = gameRound(playerInput,computerPlay());
 
             if (result === "You win! Rock smashes scissors!"
             || result === "You win! Paper covers rock."
@@ -81,10 +77,13 @@ function game(playerInput) {
             } else if (result === "You lose, paper covers rock."
             || result === "You lose, scissors cut paper."
             || result === "You lose, rock smashes scissors!") {
-                computerScorer += 1 
+                computerScore += 1 
             } else {
-                return "Try again!"
+                console.log("Try again!")
             }
+            
+            console.log("Player score:" + playerScore)
+            console.log("Computer score: " + computerScore)
         } 
 
         if (playerScore > computerScore) {
@@ -94,5 +93,25 @@ function game(playerInput) {
         } else {
             return "It's a tie."
         }
-
     }
+
+game();
+
+
+
+
+
+
+
+
+
+
+
+
+        // else (playerSelection === computerSelection) {
+    //     return `${playerSelection} vs ${computerSelection}, tie.`
+    // }
+
+
+    // What I think I'll need to use to get the user input from the UI  
+    //let playerSelection = document.getElementById("playerPick").textContent
