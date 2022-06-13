@@ -16,7 +16,15 @@ function computerPlay() {
 function gameRound (playerSelection, computerSelection) {
 
     let caseSelection = playerSelection.toLowerCase() 
+
+    if (caseSelection != ("rock" || "scissors" || "paper")) {
+        // playerSelection = null;
+        return
+    }
     
+    //  if (caseSelection != ("rock" || "scissors" || "paper")) {
+    //     gameRound((playerSelection = prompt('you can\'t bloody do that mate! Try again: ')), computerSelection)
+    // }
 
     if (caseSelection === "rock") {
         if (computerSelection === "paper") {
@@ -25,9 +33,7 @@ function gameRound (playerSelection, computerSelection) {
             return "You win! Rock smashes scissors!"
         } else if (computerSelection === "rock") {
             return "Two rocks make a tie."
-        } else {
-            return "You can't bloody do that mate!"
-        }
+        } 
     }
 
     if (caseSelection === "paper") {
@@ -37,8 +43,6 @@ function gameRound (playerSelection, computerSelection) {
             return "You lose, scissors cut paper."
         } else if (computerSelection === "paper") {
             return "Two papers makes a tie."
-        } else {
-            return "You can't bloody do that mate!"
         }
     }
 
@@ -49,11 +53,7 @@ function gameRound (playerSelection, computerSelection) {
             return "You lose, rock smashes scissors!"
         } else if (computerSelection === "scissors") {
             return "Two scissors makes a tie."
-        } else {
-            return "You can't bloody do that mate!"
-        }
-    } else {
-        return "You can't bloody do that mate!"
+        } 
     }  
 }   
 
@@ -69,10 +69,6 @@ function game() {
 
             let playerInput = prompt("Enter your pick")
 
-            // if (playerInput !== {'rock' || 'paper' || 'scissors' } ) {
-            //     return playerInput = prompt('you can\'t bloody do that mate! Try again: ')
-            // } 
-
             let result = gameRound(playerInput,computerPlay());
 
             if (result === "You win! Rock smashes scissors!"
@@ -83,9 +79,11 @@ function game() {
             || result === "You lose, scissors cut paper."
             || result === "You lose, rock smashes scissors!") {
                 computerScore += 1 
-            } else {
-                console.log("Try again!")
-            }
+            } else if (result != true) {
+                alert("You can't bloody do that!");
+                playerInput = null; 
+                result = gameRound((playerInput = prompt("Try again mate")),computerPlay())
+            } 
             
             console.log("Player score:" + playerScore)
             console.log("Computer score: " + computerScore)
