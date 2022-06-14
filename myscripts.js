@@ -13,20 +13,35 @@ function computerPlay() {
 
 }
 
-function gameRound (playerSelection, computerSelection) {
 
-    let caseSelection = playerSelection.toLowerCase() 
+function playerPick() {
 
-    if (caseSelection != ("rock" || "scissors" || "paper")) {
-        // playerSelection = null;
-        return
+    let choice = prompt("Enter your pick").toLowerCase()
+
+    console.log(choice)
+
+    while (choice != ("rock" || "scissors" || "paper")) {
+       choice = prompt("You can't do that, try again mate!").toLowerCase()
     }
+
+    return choice
+}
+
+
+function gameRound (playerSelection, computerSelection) {
+   
+
+
+    // if (caseSelection != ("rock" || "scissors" || "paper")) {
+    //     // playerSelection = null;
+    //     return
+    // }
     
     //  if (caseSelection != ("rock" || "scissors" || "paper")) {
     //     gameRound((playerSelection = prompt('you can\'t bloody do that mate! Try again: ')), computerSelection)
     // }
 
-    if (caseSelection === "rock") {
+    if (playerSelection === "rock") {
         if (computerSelection === "paper") {
             return "You lose, paper covers rock."
         } else if (computerSelection === "scissors") {
@@ -36,7 +51,7 @@ function gameRound (playerSelection, computerSelection) {
         } 
     }
 
-    if (caseSelection === "paper") {
+    if (playerSelection === "paper") {
         if (computerSelection === "rock") {
             return "You win! Paper covers rock."
         } else if (computerSelection === "scissors") {
@@ -46,7 +61,7 @@ function gameRound (playerSelection, computerSelection) {
         }
     }
 
-    if (caseSelection === "scissors") {
+    if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
             return "You win! Scissors cut paper."
         } else if (computerSelection === "rock") {
@@ -65,11 +80,8 @@ function game() {
     let computerScore = 0
 
         for (i=0; i<5; i++) {
-            
 
-            let playerInput = prompt("Enter your pick")
-
-            let result = gameRound(playerInput,computerPlay());
+            let result = gameRound(playerPick(),computerPlay());
 
             if (result === "You win! Rock smashes scissors!"
             || result === "You win! Paper covers rock."
@@ -102,7 +114,7 @@ game();
 
 
 
-
+    
 
 
 
