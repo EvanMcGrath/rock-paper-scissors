@@ -16,57 +16,71 @@ function computerPlay() {
 
 function playerPick() {
 
+    
+
+    // if (choice === "scissors") {
+    //     return choice
+    // } else if (choice === "paper") {
+    //     return choice 
+    // } else if (choice === "rock") {
+    //     return choice 
+    // } else {
+    //     alert("You can't do that mate!")
+    //     playerPick(); 
+    // }
     let choice = prompt("Enter your pick").toLowerCase()
-
-    console.log(choice)
-
-    while (choice != ("rock" || "scissors" || "paper")) {
-       choice = prompt("You can't do that, try again mate!").toLowerCase()
+    
+        while (choice) {
+            if (choice === "scissors") {
+            return choice
+        } else if (choice === "paper") {
+            return choice 
+        } else if (choice === "rock") {
+            return choice 
+        } else {
+            choice = prompt("You can't bloody do that mate! Try again.").toLowerCase()
+        }
     }
-
-    return choice
 }
-
 
 function gameRound (playerSelection, computerSelection) {
    
 
-
-    // if (caseSelection != ("rock" || "scissors" || "paper")) {
-    //     // playerSelection = null;
-    //     return
-    // }
-    
-    //  if (caseSelection != ("rock" || "scissors" || "paper")) {
-    //     gameRound((playerSelection = prompt('you can\'t bloody do that mate! Try again: ')), computerSelection)
-    // }
-
     if (playerSelection === "rock") {
         if (computerSelection === "paper") {
+            console.log("You lose, paper covers rock.")
             return "You lose, paper covers rock."
         } else if (computerSelection === "scissors") {
+            console.log("You win! Rock smashes scissors!")
             return "You win! Rock smashes scissors!"
         } else if (computerSelection === "rock") {
+            console.log("Two rocks make a tie.")
             return "Two rocks make a tie."
         } 
     }
 
     if (playerSelection === "paper") {
         if (computerSelection === "rock") {
+            console.log("You win! Paper covers rock.")
             return "You win! Paper covers rock."
         } else if (computerSelection === "scissors") {
+            console.log("You lose, scissors cut paper.")
             return "You lose, scissors cut paper."
         } else if (computerSelection === "paper") {
+            console.log("Two papers makes a tie.")
             return "Two papers makes a tie."
         }
     }
 
     if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
+            console.log("You win! Scissors cut paper.")
             return "You win! Scissors cut paper."
         } else if (computerSelection === "rock") {
+            console.log("You lose, rock smashes scissors!")
             return "You lose, rock smashes scissors!"
         } else if (computerSelection === "scissors") {
+            console.log()
             return "Two scissors makes a tie."
         } 
     }  
@@ -91,10 +105,9 @@ function game() {
             || result === "You lose, scissors cut paper."
             || result === "You lose, rock smashes scissors!") {
                 computerScore += 1 
-            } else if (result != true) {
-                alert("You can't bloody do that!");
-                playerInput = null; 
-                result = gameRound((playerInput = prompt("Try again mate")),computerPlay())
+            } else {
+                console.log("Draw")
+                i--;
             } 
             
             console.log("Player score:" + playerScore)
@@ -102,10 +115,13 @@ function game() {
         } 
 
         if (playerScore > computerScore) {
+            console.log("You win")
             return "You win!" 
         } else if (playerScore < computerScore) {
+            console.log("You Lose")
             return "You lose."
         } else {
+            console.log("It's a tie")
             return "It's a tie."
         }
     }
