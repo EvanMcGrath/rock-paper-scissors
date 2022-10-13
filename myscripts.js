@@ -14,20 +14,17 @@ function computerPlay() {
 }
 
 
+const userPick = document.querySelector(".userPick")
+userPick.addEventListener("click", (e) => {
+console.dir(e.target.innerHTML.toLowerCase())
+// gameRound(this, computerPlay())
+
+})
+
+
+
 function playerPick() {
 
-    
-
-    // if (choice === "scissors") {
-    //     return choice
-    // } else if (choice === "paper") {
-    //     return choice 
-    // } else if (choice === "rock") {
-    //     return choice 
-    // } else {
-    //     alert("You can't do that mate!")
-    //     playerPick(); 
-    // }
     let choice = prompt("Enter your pick").toLowerCase()
     
         while (choice) {
@@ -80,7 +77,7 @@ function gameRound (playerSelection, computerSelection) {
             console.log("You lose, rock smashes scissors!")
             return "You lose, rock smashes scissors!"
         } else if (computerSelection === "scissors") {
-            console.log()
+            console.log("Two scissors makes a tie.")
             return "Two scissors makes a tie."
         } 
     }  
@@ -93,26 +90,26 @@ function game() {
     let playerScore = 0
     let computerScore = 0
 
-        for (i=0; i<5; i++) {
+        // for (i=0; i<5; i++) {
 
-            let result = gameRound(playerPick(),computerPlay());
+        //     let result = gameRound(playerPick(),computerPlay());
 
-            if (result === "You win! Rock smashes scissors!"
-            || result === "You win! Paper covers rock."
-            || result === "You win! Scissors cut paper." ) {  
-                playerScore += 1
-            } else if (result === "You lose, paper covers rock."
-            || result === "You lose, scissors cut paper."
-            || result === "You lose, rock smashes scissors!") {
-                computerScore += 1 
-            } else {
-                console.log("Draw")
-                i--;
-            } 
+        //     if (result === "You win! Rock smashes scissors!"
+        //     || result === "You win! Paper covers rock."
+        //     || result === "You win! Scissors cut paper." ) {  
+        //         playerScore += 1
+        //     } else if (result === "You lose, paper covers rock."
+        //     || result === "You lose, scissors cut paper."
+        //     || result === "You lose, rock smashes scissors!") {
+        //         computerScore += 1 
+        //     } else {
+        //         console.log("Draw")
+        //         i--;
+        //     } 
             
-            console.log("Player score:" + playerScore)
-            console.log("Computer score: " + computerScore)
-        } 
+        //     console.log("Player score:" + playerScore)
+        //     console.log("Computer score: " + computerScore)
+        // } 
 
         if (playerScore > computerScore) {
             console.log("You win")
