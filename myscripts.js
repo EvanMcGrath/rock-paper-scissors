@@ -14,12 +14,7 @@ function computerPlay() {
 }
 
 
-const userPick = document.querySelector(".userPick")
-userPick.addEventListener("click", (e) => {
-console.dir(e.target.innerHTML.toLowerCase())
-// gameRound(this, computerPlay())
 
-})
 
 
 
@@ -83,7 +78,11 @@ function gameRound (playerSelection, computerSelection) {
     }  
 }   
 
+const userPick = document.querySelector(".userPick")
 
+userPick.addEventListener("click", (e) => gameRound(e.target.innerHTML.toLowerCase(), computerPlay()))
+
+    // (e) => {console.log(e.target.innerHTML.toLowerCase())}
 
 function game() {
 
