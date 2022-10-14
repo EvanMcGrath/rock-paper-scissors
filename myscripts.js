@@ -23,61 +23,64 @@ const userPick = document.querySelectorAll(".userPick")
 
 
 
-function playerPick() {
+// function playerPick() {
 
-    let choice = prompt("Enter your pick").toLowerCase()
+//     let choice = prompt("Enter your pick").toLowerCase()
     
-        while (choice) {
-            if (choice === "scissors") {
-            return choice
-        } else if (choice === "paper") {
-            return choice 
-        } else if (choice === "rock") {
-            return choice 
-        } else {
-            choice = prompt("You can't bloody do that mate! Try again.").toLowerCase()
-        }
-    }
-}
+//         while (choice) {
+//             if (choice === "scissors") {
+//             return choice
+//         } else if (choice === "paper") {
+//             return choice 
+//         } else if (choice === "rock") {
+//             return choice 
+//         } else {
+//             choice = prompt("You can't bloody do that mate! Try again.").toLowerCase()
+//         }
+//     }
+// }
 
 function gameRound (playerSelection, computerSelection) {
    
+    const resultWindow = document.querySelector("#result--window")
+
+    // console.log(resultWindow.children[0])
 
     if (playerSelection === "rock") {
         if (computerSelection === "paper") {
-            console.log("You lose, paper covers rock.")
+            resultWindow.children[0].innerText = "You lose, paper covers rock."
             return "You lose, paper covers rock."
         } else if (computerSelection === "scissors") {
-            console.log("You win! Rock smashes scissors!")
+            resultWindow.children[0].innerText = "You win! Rock smashes scissors!"
             return "You win! Rock smashes scissors!"
         } else if (computerSelection === "rock") {
-            console.log("Two rocks make a tie.")
+            resultWindow.children[0].innerText = "Two rocks make a tie."
             return "Two rocks make a tie."
         } 
     }
 
     if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            console.log("You win! Paper covers rock.")
+            resultWindow.children[0].innerText = "You win! Paper covers rock."
             return "You win! Paper covers rock."
         } else if (computerSelection === "scissors") {
-            console.log("You lose, scissors cut paper.")
+            resultWindow.children[0].innerText = "You lose, scissors cut paper."
             return "You lose, scissors cut paper."
         } else if (computerSelection === "paper") {
-            console.log("Two papers makes a tie.")
+            resultWindow.children[0].innerText = "Two papers makes a tie."
             return "Two papers makes a tie."
         }
     }
 
     if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
-            console.log("You win! Scissors cut paper.")
+            resultWindow.children[0].innerText = "You win! Scissors cut paper."
             return "You win! Scissors cut paper."
         } else if (computerSelection === "rock") {
-            console.log("You lose, rock smashes scissors!")
+            resultWindow.children[0].innerText = "You lose, rock smashes scissors!"
             return "You lose, rock smashes scissors!"
         } else if (computerSelection === "scissors") {
-            console.log("Two scissors makes a tie.")
+            resultWindow.children[0].innerText = "Two scissors makes a tie."
             return "Two scissors makes a tie."
         } 
     }  
