@@ -14,6 +14,11 @@ function computerPlay() {
 }
 
 
+const userPick = document.querySelectorAll(".userPick")
+
+    userPick[0].addEventListener("click", (e) => gameRound(e.target.innerHTML.toLowerCase(), computerPlay()))
+    userPick[1].addEventListener("click", (e) => gameRound(e.target.innerHTML.toLowerCase(), computerPlay()))
+    userPick[2].addEventListener("click", (e) => gameRound(e.target.innerHTML.toLowerCase(), computerPlay()))
 
 
 
@@ -78,11 +83,8 @@ function gameRound (playerSelection, computerSelection) {
     }  
 }   
 
-const userPick = document.querySelector(".userPick")
 
-userPick.addEventListener("click", (e) => gameRound(e.target.innerHTML.toLowerCase(), computerPlay()))
 
-    // (e) => {console.log(e.target.innerHTML.toLowerCase())}
 
 function game() {
 
