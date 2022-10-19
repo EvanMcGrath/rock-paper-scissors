@@ -43,6 +43,7 @@ const userPick = document.querySelectorAll(".userPick")
 
 
 // function that evaluates user's input and computer's input to determine the value of gameRoundResult
+// also runs and prints game scores to div 
 let gameRoundResult = null
 
 let playerScore = 0
@@ -51,58 +52,62 @@ let computerScore = 0
 function gameRound (playerSelection, computerSelection) {
    
     const resultWindow = document.querySelector("#result--window")
-    const resultText = resultWindow.children[0]
 
     if (playerSelection === "rock") {
         if (computerSelection === "paper") {
-            resultText.innerText = "You lose, paper covers rock.";
+            resultWindow.innerText = "You lose, paper covers rock.";
             gameRoundResult = "You lose, paper covers rock.";
             computerScore += 1
-            // game(gameRoundResult);
         } else if (computerSelection === "scissors") {
-            resultText.innerText = "You win! Rock smashes scissors!";
+            resultWindow.innerText = "You win! Rock smashes scissors!";
             gameRoundResult = "You win! Rock smashes scissors!";
             playerScore += 1
         } else if (computerSelection === "rock") {
-            resultText.innerText = "Two rocks make a tie.";
+            resultWindow.innerText = "Two rocks make a tie.";
             gameRoundResult = "Two rocks make a tie."
         } 
     }
 
     if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            resultText.innerText = "You win! Paper covers rock.";
+            resultWindow.innerText = "You win! Paper covers rock.";
             gameRoundResult = "You win! Paper covers rock.";
             playerScore += 1
         } else if (computerSelection === "scissors") {
-            resultText.innerText = "You lose, scissors cut paper.";
+            resultWindow.innerText = "You lose, scissors cut paper.";
             gameRoundResult = "You lose, scissors cut paper.";
             computerScore += 1
         } else if (computerSelection === "paper") {
-            resultText.innerText = "Two papers makes a tie.";
+            resultWindow.innerText = "Two papers makes a tie.";
             gameRoundResult = "Two papers makes a tie."
         }
     }
 
     if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
-            resultText.innerText = "You win! Scissors cut paper.";
+            resultWindow.innerText = "You win! Scissors cut paper.";
             gameRoundResult = "You win! Scissors cut paper.";
             playerScore += 1
         } else if (computerSelection === "rock") {
-            resultText.innerText = "You lose, rock smashes scissors!";
+            resultWindow.innerText = "You lose, rock smashes scissors!";
             gameRoundResult = "You lose, rock smashes scissors!"
             computerScore += 1
         } else if (computerSelection === "scissors") {
-            resultText.innerText = "Two scissors makes a tie.";
+            resultWindow.innerText = "Two scissors makes a tie.";
             gameRoundResult = "Two scissors makes a tie."
         } 
     }  
 
-const scoreWindow = document.querySelector("#scoreBoard")
-const scoreText = scoreWindow.children[0]
+const winner = document.querySelector("#winner")
 
-scoreText.innerText = `Human: ${playerScore} Machine: ${computerScore}`
+if ( playerScore === 5 ) {
+    winner.innerText = "Human conquers machine!!!"
+} else if ( computerScore === 5 ) {
+    winner.innerText = "Machine humiliates puny human!!!"
+}
+ 
+const scoreWindow = document.querySelector("#scoreBoard")
+scoreWindow.innerText = `Human: ${playerScore} Machine: ${computerScore}`
     
 }   
 
