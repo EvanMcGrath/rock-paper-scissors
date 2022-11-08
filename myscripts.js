@@ -14,7 +14,7 @@ function computerPlay() {
 }
 
 
-//takes user's choice and initiates game round with it && stops gameRound from running if either player 
+//takes user's choice and initiates game round with it & stops gameRound from running if either player 
 //gets to 5 points 
 const userPick = document.querySelectorAll(".userPick")
 
@@ -110,6 +110,18 @@ const scoreWindow = document.querySelector("#scoreBoard")
 scoreWindow.innerText = `Human: ${playerScore} Machine: ${computerScore}`
     
 }   
+
+
+//Test for hand animation 
+
+
+
+
+function imageChange() { 
+    document.querySelector("#handImage").src="images/rockframe2@2x.png";
+}
+
+
 
 
 

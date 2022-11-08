@@ -19,6 +19,16 @@
             text-align: center;
             margin-top: 10vh;
         }
+
+        #hand {
+            display:flex;
+            justify-content: center;
+        }
+
+        #hand > img {
+            width:25%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -29,6 +39,10 @@
         <button class="userPick">Rock</button>
         <button class="userPick">Paper</button>
         <button class="userPick">Scissors</button>
+    </div>
+
+    <div id="hand">
+        <img id="handImage" src="images/rockframe1@2x.png">
     </div>
 
     <div id="gameResults">
