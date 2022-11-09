@@ -14,6 +14,12 @@ function computerPlay() {
 }
 
 
+const rockAnimate = () => {
+    document.querySelector("#handImage").src="images/rockframe2@2x.png";
+    setTimeout( () => {document.querySelector("#handImage").src="images/rockframe3@2x.png"} , 500 );
+    setTimeout( () => {document.querySelector("#handImage").src="images/rockframe4@2x.png"} , 500 );
+ };
+
 //takes user's choice and initiates game round with it & stops gameRound from running if either player 
 //gets to 5 points 
 const userPick = document.querySelectorAll(".userPick")
@@ -22,8 +28,22 @@ const userPick = document.querySelectorAll(".userPick")
         if( ( playerScore > 4 ) || (computerScore > 4 ) ) {
             return
             } else {
-            gameRound(e.target.innerHTML.toLowerCase(), computerPlay())
-            }});
+
+                
+
+            gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
+
+            const rockAnimate = () => {
+                setTimeout( () => {document.querySelector("#handImage").src="images/rockframe2@2x.png"} , 500 );
+                setTimeout( () => {document.querySelector("#handImage").src="images/rockframe3@2x.png"} , 700 );
+                setTimeout( () => {document.querySelector("#handImage").src="images/rockframe4@2x.png"} , 700 );
+             };
+
+            rockAnimate();
+            
+             
+
+            }});             
 
     userPick[1].addEventListener("click", (e) => { 
         if( ( playerScore > 4 ) || (computerScore > 4 ) ) {
@@ -56,45 +76,36 @@ function gameRound (playerSelection, computerSelection) {
     if (playerSelection === "rock") {
         if (computerSelection === "paper") {
             resultWindow.innerText = "You lose, paper covers rock.";
-            gameRoundResult = "You lose, paper covers rock.";
             computerScore += 1
         } else if (computerSelection === "scissors") {
             resultWindow.innerText = "You win! Rock smashes scissors!";
-            gameRoundResult = "You win! Rock smashes scissors!";
             playerScore += 1
         } else if (computerSelection === "rock") {
             resultWindow.innerText = "Two rocks make a tie.";
-            gameRoundResult = "Two rocks make a tie."
         } 
     }
 
     if (playerSelection === "paper") {
         if (computerSelection === "rock") {
             resultWindow.innerText = "You win! Paper covers rock.";
-            gameRoundResult = "You win! Paper covers rock.";
             playerScore += 1
         } else if (computerSelection === "scissors") {
             resultWindow.innerText = "You lose, scissors cut paper.";
-            gameRoundResult = "You lose, scissors cut paper.";
             computerScore += 1
         } else if (computerSelection === "paper") {
             resultWindow.innerText = "Two papers makes a tie.";
-            gameRoundResult = "Two papers makes a tie."
         }
     }
 
     if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
             resultWindow.innerText = "You win! Scissors cut paper.";
-            gameRoundResult = "You win! Scissors cut paper.";
             playerScore += 1
         } else if (computerSelection === "rock") {
             resultWindow.innerText = "You lose, rock smashes scissors!";
-            gameRoundResult = "You lose, rock smashes scissors!"
             computerScore += 1
         } else if (computerSelection === "scissors") {
             resultWindow.innerText = "Two scissors makes a tie.";
-            gameRoundResult = "Two scissors makes a tie."
         } 
     }  
 
@@ -117,9 +128,9 @@ scoreWindow.innerText = `Human: ${playerScore} Machine: ${computerScore}`
 
 
 
-function imageChange() { 
-    document.querySelector("#handImage").src="images/rockframe2@2x.png";
-}
+//function imageChange() { 
+//  document.querySelector("#handImage").src="images/rockframe2@2x.png";
+//}
 
 
 
