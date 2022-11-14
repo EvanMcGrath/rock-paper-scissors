@@ -1,147 +1,198 @@
 // determines computer's choice of "rock" "paper" or "scissors"
+
+let computerPick = null;
 function computerPlay() {
+  computerPick = Math.floor(Math.random() * 3);
 
-    computerPick = Math.floor(Math.random()*3)
-    
-    if ( computerPick === 0 ) {
-        return "rock"
-    } else if ( computerPick === 1 ) {
-        return "scissors"
-    } else {
-        return "paper"
-    }
-
+  if (computerPick === 0) {
+    computerPick = "rock";
+    return "rock";
+  } else if (computerPick === 1) {
+    computerPick = "scissors"; 
+    return "scissors";
+  } else {
+    computerPick = "paper";
+    return "paper";
+  }
 }
 
+//rockAnimate function definition that is to be triggered on event listener for "rock" button click
+function rockAnimate(timestamp) {
+    let runtime = timestamp - starttime;
+    console.log(runtime);
 
-const rockAnimate = () => {
-    document.querySelector("#handImage").src="images/rockframe2@2x.png";
-    setTimeout( () => {document.querySelector("#handImage").src="images/rockframe3@2x.png"} , 500 );
-    setTimeout( () => {document.querySelector("#handImage").src="images/rockframe4@2x.png"} , 500 );
- };
+    if (runtime >= 0 && runtime < 50) {
 
-//takes user's choice and initiates game round with it & stops gameRound from running if either player 
-//gets to 5 points 
-const userPick = document.querySelectorAll(".userPick")
+      requestAnimationFrame((timestamp) => { rockAnimate(timestamp)});
 
-    userPick[0].addEventListener("click", (e) => { 
-        if( ( playerScore > 4 ) || (computerScore > 4 ) ) {
-            return
-            } else {
+    } else if (runtime > 50 && runtime < 150) {
 
-                
+      document.querySelector("#handImage").src = "images/rockframe2@2x.png";
+      requestAnimationFrame((timestamp) => { rockAnimate(timestamp)});  
 
-            gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
+    } else if ( runtime > 150 && runtime < 250 ) {
 
-            const rockAnimate = () => {
-                setTimeout( () => {document.querySelector("#handImage").src="images/rockframe2@2x.png"} , 500 );
-                setTimeout( () => {document.querySelector("#handImage").src="images/rockframe3@2x.png"} , 700 );
-                setTimeout( () => {document.querySelector("#handImage").src="images/rockframe4@2x.png"} , 700 );
-             };
+        document.querySelector("#handImage").src = "images/rockframe3@2x.png";
+        requestAnimationFrame((timestamp) => { rockAnimate(timestamp)});  
 
-            rockAnimate();
-            
-             
-
-            }});             
-
-    userPick[1].addEventListener("click", (e) => { 
-        if( ( playerScore > 4 ) || (computerScore > 4 ) ) {
-            return
-            } else {
-            gameRound(e.target.innerHTML.toLowerCase(), computerPlay())
-            }});
+    } else if ( runtime > 250 ) {
+        
+        document.querySelector("#handImage").src = "images/rockframe4@2x.png";
     
+    }
+  }
 
-    userPick[2].addEventListener("click", (e) => { 
-        if( ( playerScore > 4 ) || (computerScore > 4 ) ) {
-            return
-            } else {
-            gameRound(e.target.innerHTML.toLowerCase(), computerPlay())
-            }});
+// declaring starttime variable 
+let starttime = null;
 
 
+//takes user's choice and initiates game round with it & stops gameRound from running if either player
+//gets to 5 points
+const userPick = document.querySelectorAll(".userPick");
+
+userPick[0].addEventListener("click", (e) => {
+  if (playerScore > 4 || computerScore > 4) {
+    return;
+  } else {
+    gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
+
+
+    requestAnimationFrame((timestamp) => {
+      starttime = timestamp;
+      rockAnimate(timestamp);
+     
+    });
+
+    
+  }
+});
+
+userPick[1].addEventListener("click", (e) => {
+  if (playerScore > 4 || computerScore > 4) {
+    return;
+  } else {
+    gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
+  }
+});
+
+userPick[2].addEventListener("click", (e) => {
+  if (playerScore > 4 || computerScore > 4) {
+    return;
+  } else {
+    gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
+  }
+});
 
 // function that evaluates user's input and computer's input to determine the value of gameRoundResult
-// also runs and prints game scores to div 
-let gameRoundResult = null
+// also runs and prints game scores to div
+let gameRoundResult = null;
 
-let playerScore = 0
-let computerScore = 0
+let playerScore = 0;
+let computerScore = 0;
 
-function gameRound (playerSelection, computerSelection) {
-   
-    const resultWindow = document.querySelector("#result--window")
+function gameRound(playerSelection, computerSelection) {
+  const resultWindow = document.querySelector("#result--window");
 
-    if (playerSelection === "rock") {
-        if (computerSelection === "paper") {
-            resultWindow.innerText = "You lose, paper covers rock.";
-            computerScore += 1
-        } else if (computerSelection === "scissors") {
-            resultWindow.innerText = "You win! Rock smashes scissors!";
-            playerScore += 1
-        } else if (computerSelection === "rock") {
-            resultWindow.innerText = "Two rocks make a tie.";
-        } 
+  if (playerSelection === "rock") {
+    if (computerSelection === "paper") {
+      resultWindow.innerText = "You lose, paper covers rock.";
+      computerScore += 1;
+    } else if (computerSelection === "scissors") {
+      resultWindow.innerText = "You win! Rock smashes scissors!";
+      playerScore += 1;
+    } else if (computerSelection === "rock") {
+      resultWindow.innerText = "Two rocks make a tie.";
     }
+  }
 
-    if (playerSelection === "paper") {
-        if (computerSelection === "rock") {
-            resultWindow.innerText = "You win! Paper covers rock.";
-            playerScore += 1
-        } else if (computerSelection === "scissors") {
-            resultWindow.innerText = "You lose, scissors cut paper.";
-            computerScore += 1
-        } else if (computerSelection === "paper") {
-            resultWindow.innerText = "Two papers makes a tie.";
-        }
+  if (playerSelection === "paper") {
+    if (computerSelection === "rock") {
+      resultWindow.innerText = "You win! Paper covers rock.";
+      playerScore += 1;
+    } else if (computerSelection === "scissors") {
+      resultWindow.innerText = "You lose, scissors cut paper.";
+      computerScore += 1;
+    } else if (computerSelection === "paper") {
+      resultWindow.innerText = "Two papers makes a tie.";
     }
+  }
 
-    if (playerSelection === "scissors") {
-        if (computerSelection === "paper") {
-            resultWindow.innerText = "You win! Scissors cut paper.";
-            playerScore += 1
-        } else if (computerSelection === "rock") {
-            resultWindow.innerText = "You lose, rock smashes scissors!";
-            computerScore += 1
-        } else if (computerSelection === "scissors") {
-            resultWindow.innerText = "Two scissors makes a tie.";
-        } 
-    }  
+  if (playerSelection === "scissors") {
+    if (computerSelection === "paper") {
+      resultWindow.innerText = "You win! Scissors cut paper.";
+      playerScore += 1;
+    } else if (computerSelection === "rock") {
+      resultWindow.innerText = "You lose, rock smashes scissors!";
+      computerScore += 1;
+    } else if (computerSelection === "scissors") {
+      resultWindow.innerText = "Two scissors makes a tie.";
+    }
+  }
 
-const winner = document.querySelector("#winner")
+  const winner = document.querySelector("#winner");
 
-if ( playerScore === 5 ) {
-    winner.innerText = "Human conquers machine!!!"
-} else if ( computerScore === 5 ) {
-    winner.innerText = "Machine humiliates puny human!!!"
+  if (playerScore === 5) {
+    winner.innerText = "Human conquers machine!!!";
+  } else if (computerScore === 5) {
+    winner.innerText = "Machine humiliates puny human!!!";
+  }
+
+  const scoreWindow = document.querySelector("#scoreBoard");
+  scoreWindow.innerText = `Human: ${playerScore} Machine: ${computerScore}`;
 }
- 
-const scoreWindow = document.querySelector("#scoreBoard")
-scoreWindow.innerText = `Human: ${playerScore} Machine: ${computerScore}`
-    
-}   
-
-
-//Test for hand animation 
-
-
-
-
-//function imageChange() { 
-//  document.querySelector("#handImage").src="images/rockframe2@2x.png";
-//}
 
 
 
 
 
-// For displaying results 
+//Test for hand animation
+
+
+
+
+
+
+
+
+
+// **************************** BELOW IS YE OLDE CODE GRAVEYARD **** /////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function rockAnimate() {
+    //    setTimeout(() => { document.querySelector("#handImage").src = "images/rockframe2@2x.png" }, 500)
+    //    setTimeout(() => { document.querySelector("#handImage").src = "images/rockframe3@2x.png" }, 700)
+    //    setTimeout(() => { document.querySelector("#handImage").src = "images/rockframe4@2x.png" }, 700)
+    //}
+
+    //rockAnimate();
+
+
+
+
+
+// For displaying results
 
 // const scoreWindow = document.querySelector("#scoreBoard")
 // const scoreText = scoreWindow.children[0]
-
-
 
 // function game() {
 
@@ -154,24 +205,24 @@ scoreWindow.innerText = `Human: ${playerScore} Machine: ${computerScore}`
 
 //             if (result === "You win! Rock smashes scissors!"
 //             || result === "You win! Paper covers rock."
-//             || result === "You win! Scissors cut paper." ) {  
+//             || result === "You win! Scissors cut paper." ) {
 //                 playerScore += 1
 //             } else if (result === "You lose, paper covers rock."
 //             || result === "You lose, scissors cut paper."
 //             || result === "You lose, rock smashes scissors!") {
-//                 computerScore += 1 
+//                 computerScore += 1
 //             } else {
 //                 console.log("Draw")
 //                 i--;
-//             } 
-            
+//             }
+
 //             console.log("Player score:" + playerScore)
 //             console.log("Computer score: " + computerScore)
-//         } 
+//         }
 
 //         if (playerScore > computerScore) {
 //             console.log("You win")
-//             return "You win!" 
+//             return "You win!"
 //         } else if (playerScore < computerScore) {
 //             console.log("You Lose")
 //             return "You lose."
@@ -182,4 +233,3 @@ scoreWindow.innerText = `Human: ${playerScore} Machine: ${computerScore}`
 //     }
 
 // game();
-
