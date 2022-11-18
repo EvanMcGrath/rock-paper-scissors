@@ -16,7 +16,15 @@ function computerPlay() {
   }
 }
 
+
+
+
+
 //rockAnimate function definition that is to be triggered on event listener for "rock" button click
+
+    // declaring starttime variable 
+    let starttime = null;
+
 function rockAnimate(timestamp) {
     let runtime = timestamp - starttime;
     console.log(runtime);
@@ -42,8 +50,57 @@ function rockAnimate(timestamp) {
     }
   }
 
-// declaring starttime variable 
-let starttime = null;
+
+function scissorsAnimate(timestamp) {
+    let runtime = timestamp - starttime;
+    console.log(runtime);
+
+    if (runtime >= 0 && runtime < 50) {
+
+      document.querySelector("#handImage").src = "images/scissors2@2x.png";
+      requestAnimationFrame((timestamp) => { scissorsAnimate(timestamp)});
+
+    } else if (runtime > 50 && runtime < 100) {
+
+      document.querySelector("#handImage").src = "images/scissors3@2x.png";
+        requestAnimationFrame((timestamp) => { scissorsAnimate(timestamp)}); 
+
+    } else if ( runtime > 100 && runtime < 200 ) {
+
+      document.querySelector("#handImage").src = "images/scissors4@2x.png";
+      requestAnimationFrame((timestamp) => { scissorsAnimate(timestamp)});
+
+    } else if ( runtime > 200 && runtime < 300 ) {
+        
+      document.querySelector("#handImage").src = "images/scissors5.png";
+    
+    } 
+  }
+
+function paperAnimate(timestamp) {
+    let runtime = timestamp - starttime;
+    console.log(runtime);
+
+    if (runtime >= 0 && runtime < 50) {
+
+      document.querySelector("#handImage").src = "images/paper2@2x.png";
+      requestAnimationFrame((timestamp) => { paperAnimate(timestamp)});
+
+    } else if (runtime > 50 && runtime < 200) {
+
+      document.querySelector("#handImage").src = "images/paper3@2x.png";
+        requestAnimationFrame((timestamp) => { paperAnimate(timestamp)}); 
+
+    } else if ( runtime > 200 && runtime < 350 ) {
+
+      document.querySelector("#handImage").src = "images/paper4@2x.png";
+      
+
+    } 
+  }
+
+
+
 
 
 //takes user's choice and initiates game round with it & stops gameRound from running if either player
@@ -67,19 +124,32 @@ userPick[0].addEventListener("click", (e) => {
   }
 });
 
+
 userPick[1].addEventListener("click", (e) => {
   if (playerScore > 4 || computerScore > 4) {
     return;
   } else {
     gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
+
+    requestAnimationFrame((timestamp) => {
+      starttime = timestamp;
+      paperAnimate(timestamp);
+    })
   }
 });
+
 
 userPick[2].addEventListener("click", (e) => {
   if (playerScore > 4 || computerScore > 4) {
     return;
   } else {
     gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
+
+    requestAnimationFrame((timestamp) => {
+      starttime = timestamp;
+      scissorsAnimate(timestamp);
+    });
+
   }
 });
 
