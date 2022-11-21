@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+}
+
+/******************** LAYOUT STYLES  *************************/
+
+
+#userInput--ui {
+    width: 50%; 
+    margin: 0 auto; 
+    text-align: center; 
+    padding-top: 2vh;
+}
+
+
+#gameResults {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+#animationContainer {
+    display: flex;
+    margin:auto;
+    margin-top:10vh;
+    width: 40vw;
+    justify-content: space-around;
+}
+
+/****************** ANIMATION FLEXBOX **********************/
+
+
+#animationContainer > #computer { 
+    width: 50%;
+    order: 1;
+    position: relative; 
+}
+
+#animationContainer > #hand {
+    width: 60%; 
+    margin-left: -8vw;
+    margin-top: -6vh;
+}
+
+#hand img {
+    align-self:center;
+    width:100%;
+    height: auto;
+}
+
+
+
+/********************* KEYFRAMES ****************/
+
+
+#blinkingDot {
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}

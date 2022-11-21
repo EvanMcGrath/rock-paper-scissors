@@ -16,8 +16,7 @@ function computerPlay() {
   }
 }
 
-
-
+ 
 
 
 //rockAnimate function definition that is to be triggered on event listener for "rock" button click
@@ -153,9 +152,9 @@ userPick[2].addEventListener("click", (e) => {
   }
 });
 
-// function that evaluates user's input and computer's input to determine the value of gameRoundResult
+
+// function that evaluates user's input and computer's input to determine who wins the round
 // also runs and prints game scores to div
-let gameRoundResult = null;
 
 let playerScore = 0;
 let computerScore = 0;
@@ -215,7 +214,7 @@ function gameRound(playerSelection, computerSelection) {
 
 
 
-//Test for hand animation
+
 
 
 
