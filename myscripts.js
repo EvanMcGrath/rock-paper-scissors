@@ -1,5 +1,4 @@
 // determines computer's choice of "rock" "paper" or "scissors"
-
 let computerPick = null;
 function computerPlay() {
   computerPick = Math.floor(Math.random() * 3);
@@ -7,14 +6,17 @@ function computerPlay() {
   if (computerPick === 0) {
     computerPick = "rock";
     screenReveal("#scissorScreen");
+  
     return "rock";
   } else if (computerPick === 1) {
     computerPick = "scissors"; 
     screenReveal();
+  
     return "scissors";
   } else {
     computerPick = "paper";
     screenReveal("#scissorScreen", "#rockScreen");
+ 
     return "paper";
   }
 }
@@ -28,6 +30,13 @@ function screenReveal(svgLayer, svgLayer2) {
   });
 }
 
+function screenReverse() {
+  document.querySelector("#blinkingDot").classList.add('dotAnimate');
+  let firstScreen = document.querySelectorAll(`#blinkingDot, #blankScreen, #scissorScreen, #rockScreen`);
+  firstScreen.forEach((item)=> {
+    item.style="opacity:100;"
+  });
+}
 
 
 //rockAnimate function definition that is to be triggered on event listener for "rock" button click
@@ -60,6 +69,32 @@ function rockAnimate(timestamp) {
     }
   }
 
+function rockAnimateReverse(timestamp) {
+    let runtime = timestamp - starttime;
+    
+
+    if (runtime >= 0 && runtime < 50) {
+
+      requestAnimationFrame((timestamp) => { rockAnimateReverse(timestamp)});
+     console.log("what")
+    } else if (runtime > 50 && runtime < 150) {
+
+      document.querySelector("#handImage").src = "images/rockframe3@2x.png";
+      requestAnimationFrame((timestamp) => { rockAnimateReverse(timestamp)});  
+      console.log("the")
+
+    } else if ( runtime > 150 && runtime < 250 ) {
+
+        document.querySelector("#handImage").src = "images/rockframe2@2x.png";
+        requestAnimationFrame((timestamp) => { rockAnimateReverse(timestamp)});  
+        console.log("fuck")
+
+    } else if ( runtime > 250 ) {
+        
+        document.querySelector("#handImage").src = "images/rockframe1@2x.png";
+      console.log("bitch")
+    }
+  }
 
 function scissorsAnimate(timestamp) {
     let runtime = timestamp - starttime;
@@ -87,6 +122,33 @@ function scissorsAnimate(timestamp) {
     } 
   }
 
+function scissorsAnimateReverse(timestamp) {
+    let runtime = timestamp - starttime;
+    
+
+    if (runtime >= 0 && runtime < 50) {
+
+      requestAnimationFrame((timestamp) => { scissorsAnimateReverse(timestamp)});
+     console.log("what")
+    } else if (runtime > 50 && runtime < 150) {
+
+      document.querySelector("#handImage").src = "images/scissors3@2x.png";
+      requestAnimationFrame((timestamp) => { scissorsAnimateReverse(timestamp)});  
+      console.log("the")
+
+    } else if ( runtime > 150 && runtime < 250 ) {
+
+        document.querySelector("#handImage").src = "images/scissors2@2x.png";
+        requestAnimationFrame((timestamp) => { scissorsAnimateReverse(timestamp)});  
+        console.log("fuck")
+
+    } else if ( runtime > 250 ) {
+        
+        document.querySelector("#handImage").src = "images/scissors1@2x.png";
+      console.log("bitch")
+    }
+  }
+
 function paperAnimate(timestamp) {
     let runtime = timestamp - starttime;
     console.log(runtime);
@@ -109,26 +171,86 @@ function paperAnimate(timestamp) {
     } 
   }
 
+function paperAnimateReverse(timestamp) {
+    let runtime = timestamp - starttime;
+    
+
+    if (runtime >= 0 && runtime < 50) {
+
+      requestAnimationFrame((timestamp) => { paperAnimateReverse(timestamp)});
+     console.log("what")
+    } else if (runtime > 50 && runtime < 150) {
+
+      document.querySelector("#handImage").src = "images/paper3@2x.png";
+      requestAnimationFrame((timestamp) => { paperAnimateReverse(timestamp)});  
+      console.log("the")
+
+    } else if ( runtime > 150 && runtime < 250 ) {
+
+        document.querySelector("#handImage").src = "images/paper2@2x.png";
+        requestAnimationFrame((timestamp) => { paperAnimateReverse(timestamp)});  
+        console.log("fuck")
+
+    } else if ( runtime > 250 ) {
+        
+        document.querySelector("#handImage").src = "images/paper1@2x.png";
+      console.log("bitch")
+    }
+  }
+
 
 
 
 
 //takes user's choice and initiates game round with it & stops gameRound from running if either player
 //gets to 5 points
+
+
+let buttons = document.querySelectorAll("button");
+buttons.forEach((item) => {
+  item.disabled=false;
+});
+
 const userPick = document.querySelectorAll(".userPick");
+
 
 userPick[0].addEventListener("click", (e) => {
   if (playerScore > 4 || computerScore > 4) {
     return;
   } else {
+    
+
     gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
+   
+    buttons.forEach((item) => {
+      item.disabled=true;
+    });
 
     requestAnimationFrame((timestamp) => {
       starttime = timestamp;
       rockAnimate(timestamp);
     });
 
-  }
+  
+    setTimeout( ()=> {
+      requestAnimationFrame((timestamp) => {
+      starttime = timestamp;
+      rockAnimateReverse(timestamp);
+    });
+
+    
+
+    screenReverse();
+
+    buttons.forEach((item) => {
+      item.disabled=false;
+    });
+
+  }, 3000 )
+
+  
+};
+
 });
 
 
@@ -138,11 +260,29 @@ userPick[1].addEventListener("click", (e) => {
   } else {
     gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
 
+    buttons.forEach((item) => {
+      item.disabled=true;
+    });
+
     requestAnimationFrame((timestamp) => {
       starttime = timestamp;
       paperAnimate(timestamp);
-    })
-  }
+    });
+
+    setTimeout( ()=> {
+      requestAnimationFrame((timestamp) => {
+      starttime = timestamp;
+      paperAnimateReverse(timestamp);
+    });
+
+    screenReverse();
+
+    buttons.forEach((item) => {
+      item.disabled=false;
+    });
+
+  }, 3000 );
+  };
 });
 
 
@@ -151,13 +291,30 @@ userPick[2].addEventListener("click", (e) => {
     return;
   } else {
     gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
-
+    buttons.forEach((item) => {
+      item.disabled=true;
+    });
+    
     requestAnimationFrame((timestamp) => {
       starttime = timestamp;
       scissorsAnimate(timestamp);
     });
 
-  }
+    setTimeout( ()=> {
+      requestAnimationFrame((timestamp) => {
+      starttime = timestamp;
+      scissorsAnimateReverse(timestamp);
+    });
+
+    screenReverse();
+
+    buttons.forEach((item) => {
+      item.disabled=false;
+    });
+
+  }, 3000 );
+
+  };
 });
 
 

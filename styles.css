@@ -69,3 +69,9 @@
         opacity: 100%;
     }
 }
+
+/******************** POINTER EVENT CLASS  ***************************/
+
+.buttonDisable {
+    pointer-events:none;
+}
