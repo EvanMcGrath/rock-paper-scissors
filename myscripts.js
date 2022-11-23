@@ -6,17 +6,28 @@ function computerPlay() {
 
   if (computerPick === 0) {
     computerPick = "rock";
+    screenReveal("#scissorScreen");
     return "rock";
   } else if (computerPick === 1) {
     computerPick = "scissors"; 
+    screenReveal();
     return "scissors";
   } else {
     computerPick = "paper";
+    screenReveal("#scissorScreen", "#rockScreen");
     return "paper";
   }
 }
 
- 
+
+function screenReveal(svgLayer, svgLayer2) {
+  document.querySelector("#blinkingDot").classList.remove('dotAnimate');
+  let firstScreen = document.querySelectorAll(`#blinkingDot, #blankScreen, ${svgLayer}, ${svgLayer2}`);
+  firstScreen.forEach((item)=> {
+    item.style="opacity:0;"
+  });
+}
+
 
 
 //rockAnimate function definition that is to be triggered on event listener for "rock" button click
@@ -112,14 +123,11 @@ userPick[0].addEventListener("click", (e) => {
   } else {
     gameRound(e.target.innerHTML.toLowerCase(), computerPlay());
 
-
     requestAnimationFrame((timestamp) => {
       starttime = timestamp;
       rockAnimate(timestamp);
-     
     });
 
-    
   }
 });
 

@@ -54,7 +54,7 @@
 /********************* KEYFRAMES ****************/
 
 
-#blinkingDot {
+.dotAnimate {
     animation: blink 2s infinite;
 }
 
