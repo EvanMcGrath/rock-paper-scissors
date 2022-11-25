@@ -62,10 +62,15 @@ function rockAnimate(timestamp) {
         document.querySelector("#handImage").src = "images/rockframe3@2x.png";
         requestAnimationFrame((timestamp) => { rockAnimate(timestamp)});  
 
-    } else if ( runtime > 250 ) {
+    } else if ( runtime > 250 && runtime < 500 ) {
         
         document.querySelector("#handImage").src = "images/rockframe4@2x.png";
-    
+        requestAnimationFrame((timestamp) => { rockAnimate(timestamp)});
+
+    } else if ( runtime > 500 ) {
+
+
+      loadWindow.style="opacity:100;";
     }
   }
 
@@ -213,6 +218,7 @@ buttons.forEach((item) => {
 
 const userPick = document.querySelectorAll(".userPick");
 
+const loadWindow = document.getElementById("loadingWindow");
 
 userPick[0].addEventListener("click", (e) => {
   if (playerScore > 4 || computerScore > 4) {
@@ -231,8 +237,12 @@ userPick[0].addEventListener("click", (e) => {
       rockAnimate(timestamp);
     });
 
-  
+    
+
     setTimeout( ()=> {
+
+      
+
       requestAnimationFrame((timestamp) => {
       starttime = timestamp;
       rockAnimateReverse(timestamp);
@@ -246,10 +256,15 @@ userPick[0].addEventListener("click", (e) => {
       item.disabled=false;
     });
 
-  }, 3000 )
+    loadWindow.style="opacity:0;";
+
+  }, 2000 )
 
   
+  
 };
+
+ 
 
 });
 
@@ -281,7 +296,7 @@ userPick[1].addEventListener("click", (e) => {
       item.disabled=false;
     });
 
-  }, 3000 );
+  }, 2000 );
   };
 });
 
@@ -312,7 +327,7 @@ userPick[2].addEventListener("click", (e) => {
       item.disabled=false;
     });
 
-  }, 3000 );
+  }, 2000 );
 
   };
 });

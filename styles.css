@@ -50,6 +50,9 @@
 }
 
 
+#loadingWindow {
+    opacity: 0;
+}
 
 /********************* KEYFRAMES ****************/
 
