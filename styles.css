@@ -52,6 +52,8 @@
 
 #loadingWindow {
     opacity: 0;
+    position: absolute;
+    
 }
 
 /********************* KEYFRAMES ****************/
@@ -73,6 +75,14 @@
     }
 }
 
+
+.spinning {
+    animation
+} 
+
+@keyframes spinning { 
+    
+}
 /******************** POINTER EVENT CLASS  ***************************/
 
 .buttonDisable {

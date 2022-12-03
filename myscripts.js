@@ -69,7 +69,8 @@ function rockAnimate(timestamp) {
 
     } else if ( runtime > 500 ) {
 
-
+      //loadWindow has to start here in order to ensure that the reloading dialogue box
+      //pops up after the "turn" animations have completed 
       loadWindow.style="opacity:100;";
     }
   }
@@ -81,23 +82,21 @@ function rockAnimateReverse(timestamp) {
     if (runtime >= 0 && runtime < 50) {
 
       requestAnimationFrame((timestamp) => { rockAnimateReverse(timestamp)});
-     console.log("what")
+     
     } else if (runtime > 50 && runtime < 150) {
 
       document.querySelector("#handImage").src = "images/rockframe3@2x.png";
-      requestAnimationFrame((timestamp) => { rockAnimateReverse(timestamp)});  
-      console.log("the")
+      requestAnimationFrame((timestamp) => { rockAnimateReverse(timestamp)}); 
 
     } else if ( runtime > 150 && runtime < 250 ) {
 
         document.querySelector("#handImage").src = "images/rockframe2@2x.png";
         requestAnimationFrame((timestamp) => { rockAnimateReverse(timestamp)});  
-        console.log("fuck")
+        loadWindow.style="opacity:0;"; 
 
     } else if ( runtime > 250 ) {
         
         document.querySelector("#handImage").src = "images/rockframe1@2x.png";
-      console.log("bitch")
     }
   }
 
@@ -120,11 +119,17 @@ function scissorsAnimate(timestamp) {
       document.querySelector("#handImage").src = "images/scissors4@2x.png";
       requestAnimationFrame((timestamp) => { scissorsAnimate(timestamp)});
 
-    } else if ( runtime > 200 && runtime < 300 ) {
+    } else if ( runtime > 200 && runtime < 500 ) {
         
       document.querySelector("#handImage").src = "images/scissors5.png";
+      requestAnimationFrame((timestamp) => { scissorsAnimate(timestamp)});
     
-    } 
+    } else if ( runtime > 500 ) {
+
+      //loadWindow has to start here in order to ensure that the reloading dialogue box
+      //pops up after the "turn" animations have completed 
+      loadWindow.style="opacity:100;";
+    }
   }
 
 function scissorsAnimateReverse(timestamp) {
@@ -134,23 +139,20 @@ function scissorsAnimateReverse(timestamp) {
     if (runtime >= 0 && runtime < 50) {
 
       requestAnimationFrame((timestamp) => { scissorsAnimateReverse(timestamp)});
-     console.log("what")
     } else if (runtime > 50 && runtime < 150) {
 
       document.querySelector("#handImage").src = "images/scissors3@2x.png";
       requestAnimationFrame((timestamp) => { scissorsAnimateReverse(timestamp)});  
-      console.log("the")
 
     } else if ( runtime > 150 && runtime < 250 ) {
 
         document.querySelector("#handImage").src = "images/scissors2@2x.png";
-        requestAnimationFrame((timestamp) => { scissorsAnimateReverse(timestamp)});  
-        console.log("fuck")
+        requestAnimationFrame((timestamp) => { scissorsAnimateReverse(timestamp)});
+        loadWindow.style="opacity:0;";   
 
     } else if ( runtime > 250 ) {
         
         document.querySelector("#handImage").src = "images/scissors1@2x.png";
-      console.log("bitch")
     }
   }
 
@@ -168,12 +170,18 @@ function paperAnimate(timestamp) {
       document.querySelector("#handImage").src = "images/paper3@2x.png";
         requestAnimationFrame((timestamp) => { paperAnimate(timestamp)}); 
 
-    } else if ( runtime > 200 && runtime < 350 ) {
+    } else if ( runtime > 200 && runtime < 500 ) {
 
       document.querySelector("#handImage").src = "images/paper4@2x.png";
+      requestAnimationFrame((timestamp) => { paperAnimate(timestamp)}); 
       
 
-    } 
+    } else if ( runtime > 500 ) {
+
+      //loadWindow has to start here in order to ensure that the reloading dialogue box
+      //pops up after the "turn" animations have completed 
+      loadWindow.style="opacity:100;";
+    }
   }
 
 function paperAnimateReverse(timestamp) {
@@ -183,23 +191,20 @@ function paperAnimateReverse(timestamp) {
     if (runtime >= 0 && runtime < 50) {
 
       requestAnimationFrame((timestamp) => { paperAnimateReverse(timestamp)});
-     console.log("what")
     } else if (runtime > 50 && runtime < 150) {
 
       document.querySelector("#handImage").src = "images/paper3@2x.png";
       requestAnimationFrame((timestamp) => { paperAnimateReverse(timestamp)});  
-      console.log("the")
 
     } else if ( runtime > 150 && runtime < 250 ) {
 
         document.querySelector("#handImage").src = "images/paper2@2x.png";
         requestAnimationFrame((timestamp) => { paperAnimateReverse(timestamp)});  
-        console.log("fuck")
+        loadWindow.style="opacity:0;"; 
 
     } else if ( runtime > 250 ) {
         
         document.querySelector("#handImage").src = "images/paper1@2x.png";
-      console.log("bitch")
     }
   }
 
@@ -211,7 +216,7 @@ function paperAnimateReverse(timestamp) {
 //gets to 5 points
 
 
-let buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll("button");
 buttons.forEach((item) => {
   item.disabled=false;
 });
@@ -256,7 +261,6 @@ userPick[0].addEventListener("click", (e) => {
       item.disabled=false;
     });
 
-    loadWindow.style="opacity:0;";
 
   }, 2000 )
 
