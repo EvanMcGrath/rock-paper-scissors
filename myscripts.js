@@ -44,6 +44,8 @@ function screenReverse() {
     // declaring starttime variable 
     let starttime = null;
 
+    const loadWindow = document.getElementById("loadingWindow");
+
 function rockAnimate(timestamp) {
     let runtime = timestamp - starttime;
     console.log(runtime);
@@ -71,7 +73,9 @@ function rockAnimate(timestamp) {
 
       //loadWindow has to start here in order to ensure that the reloading dialogue box
       //pops up after the "turn" animations have completed 
+      
       loadWindow.style="opacity:100;";
+      loadWindow.classList.add("spinning");
     }
   }
 
@@ -180,6 +184,7 @@ function paperAnimate(timestamp) {
 
       //loadWindow has to start here in order to ensure that the reloading dialogue box
       //pops up after the "turn" animations have completed 
+
       loadWindow.style="opacity:100;";
     }
   }
@@ -223,7 +228,7 @@ buttons.forEach((item) => {
 
 const userPick = document.querySelectorAll(".userPick");
 
-const loadWindow = document.getElementById("loadingWindow");
+
 
 userPick[0].addEventListener("click", (e) => {
   if (playerScore > 4 || computerScore > 4) {

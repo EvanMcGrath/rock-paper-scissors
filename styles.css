@@ -22,6 +22,7 @@
 
 #animationContainer {
     display: flex;
+    position:relative;
     margin:auto;
     margin-top:10vh;
     width: 40vw;
@@ -34,7 +35,6 @@
 #animationContainer > #computer { 
     width: 50%;
     order: 1;
-    position: relative; 
 }
 
 #animationContainer > #hand {
@@ -53,10 +53,9 @@
 #loadingWindow {
     opacity: 0;
     position: absolute;
-    
 }
 
-/********************* KEYFRAMES ****************/
+/********************* ANIMATION/KEYFRAMES ****************/
 
 
 .dotAnimate {
@@ -77,11 +76,24 @@
 
 
 .spinning {
-    animation
-} 
+    animation: spinning 2s; 
+}
 
-@keyframes spinning { 
-    
+@keyframes spinning {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+.linear {
+    animation-timing-function: linear;
+}
+
+.infinite {
+    animation-iteration-count: infinite; 
 }
 /******************** POINTER EVENT CLASS  ***************************/
 
