@@ -39,8 +39,8 @@
 
 #animationContainer > #hand {
     width: 60%; 
-    margin-left: -8vw;
-    margin-top: -6vh;
+    margin-left: -4vw;
+    margin-top: -3vh;
 }
 
 #hand img {
